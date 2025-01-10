@@ -1,1 +1,1 @@
-INSERT INTO Run (id, title, started_on, completed_on, miles, location) VALUES (100, 'Morning Run', '2020-01-01 06:00:00', '2020-01-01 07:00:00', 5, 'OUTDOOR');
+INSERT INTO RunTableForScript (id, title, started_on, completed_on, miles, location) VALUES (100, 'Morning Run', '2020-01-01 06:00:00', '2020-01-01 07:00:00', 5, 'OUTDOOR');

@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 
 import com.induwara.springTest.run.Location;
 import com.induwara.springTest.run.Run;
-import com.induwara.springTest.run.RunRespository;
+import com.induwara.springTest.run.RunRepository;
 
 @SpringBootApplication
 public class Application {
@@ -45,13 +45,14 @@ public class Application {
 
 	}
 
-	//command line runner(inserting data to the database)
+	// command line runner(inserting data to the database)
 	// @Bean
 	// CommandLineRunner runner(RunRespository runRespository) {
-	// 	return args -> {
-	// 		Run run = new Run(3, "First Run", LocalDateTime.now(), LocalDateTime.now().plusHours(1), 5, Location.OUTDOOR);
-	// 		runRespository.create(run);
-	// 	};
+	// return args -> {
+	// Run run = new Run(3, "First Run", LocalDateTime.now(),
+	// LocalDateTime.now().plusHours(1), 5, Location.OUTDOOR);
+	// runRespository.create(run);
+	// };
 	// }
 
 }

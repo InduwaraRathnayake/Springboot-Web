@@ -20,53 +20,53 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/runs")
 public class RunController {
 
-    private final RunRespository runRespository;
+    private final RunRepository runRespository;
 
-    public RunController(RunRespository runRespository) {
+    public RunController(RunRepository runRespository) {
         this.runRespository = runRespository;
     }
 
     // @GetMapping("/api/runs")
     @GetMapping("")
-    List<Run> fundAll(){
+    List<Run> fundAll() {
         return runRespository.findAll();
     }
 
     // @GetMapping("/api/runs/{id}")
     @GetMapping("/{id}")
-    Run findById(@PathVariable Integer id){
+    Run findById(@PathVariable Integer id) {
         Optional<Run> run = runRespository.findById(id);
 
-        if(run.isEmpty()){
+        if (run.isEmpty()) {
             throw new RunNotFoundException();
         }
         return run.get();
     }
-    
+
     // display hello world at http://localhost:8080/hello
     @RequestMapping("/hello")
-    public String home(){
+    public String home() {
         return "Hello Wordld";
     }
-    
+
     // post
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    void create(@Valid @RequestBody Run run){
+    void create(@Valid @RequestBody Run run) {
         runRespository.create(run);
     }
 
     // put
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void update (@Valid @RequestBody Run run, @PathVariable Integer id){
-        runRespository.update(run,id);
+    void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
+        runRespository.update(run, id);
     }
 
     // delete
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    void delete(@PathVariable Integer id){
+    void delete(@PathVariable Integer id) {
         runRespository.delete(id);
     }
 

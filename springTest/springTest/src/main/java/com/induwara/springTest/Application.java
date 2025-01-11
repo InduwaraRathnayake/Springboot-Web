@@ -1,40 +1,20 @@
-// package com.induwara.springTest;
-
-// import org.slf4j.Logger;
-// import org.slf4j.LoggerFactory;
-
-// import org.springframework.boot.SpringApplication;
-// import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-// @SpringBootApplication
-// public class Application {
-// 	private static final Logger log = LoggerFactory.getLogger(Application.class);
-
-// 	public static void main(String[] args) {
-// 		SpringApplication.run(Application.class, args);
-
-// 		// var welcomeMessage = new WelcomeMessage();
-// 		// System.out.println(welcomeMessage.getWelcomeMessage());
-
-// 		log.info("Induwara -> les gooooo");
-
-// 	}
-
-// }
 package com.induwara.springTest;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.support.RestClientAdapter;
+import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.induwara.springTest.run.Location;
-import com.induwara.springTest.run.Run;
-import com.induwara.springTest.run.JDBCClientRunRepository;
+import com.induwara.springTest.user.User;
+import com.induwara.springTest.user.UserHttpClient;
+import com.induwara.springTest.user.UserRestClient;
 
 @SpringBootApplication
 public class Application {
@@ -45,14 +25,22 @@ public class Application {
 
 	}
 
-	// command line runner(inserting data to the database)
-	// @Bean
-	// CommandLineRunner runner(RunRespository runRespository) {
-	// return args -> {
-	// Run run = new Run(3, "First Run", LocalDateTime.now(),
-	// LocalDateTime.now().plusHours(1), 5, Location.OUTDOOR);
-	// runRespository.create(run);
-	// };
-	// }
+	@Bean
+	UserHttpClient userHttpClient() {
+	    RestClient restClient = RestClient.create("https://jsonplaceholder.typicode.com/");
+	    HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(RestClientAdapter.create(restClient)).build();
+	    return factory.createClient(UserHttpClient.class);
+	}
+
+	// command line runner
+	@Bean
+	CommandLineRunner runner(UserRestClient client) {
+		return args -> {
+			List<User> users = client.findAll();
+			System.out.println("users = " + users);
+
+			client.findById(1);
+		};
+	}
 
 }

@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 
 import com.induwara.springTest.run.Location;
 import com.induwara.springTest.run.Run;
-import com.induwara.springTest.run.RunRepository;
+import com.induwara.springTest.run.JDBCClientRunRepository;
 
 @SpringBootApplication
 public class Application {

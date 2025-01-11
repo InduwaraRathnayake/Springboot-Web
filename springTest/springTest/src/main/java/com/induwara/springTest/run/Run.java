@@ -2,10 +2,14 @@ package com.induwara.springTest.run;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 
 public record Run(
+    @Id // this is a spring data annotation
     Integer id,
 
     @NotEmpty // this is a validation annotation by jakarta validation
@@ -17,7 +21,10 @@ public record Run(
     @Positive // this is a validation annotation by jakarta validation
     Integer miles,
     
-    Location location
+    Location location,
+
+    @Version
+    Integer version
 ) {
     public Run{
         if(!completedOn.isAfter(startedOn)){

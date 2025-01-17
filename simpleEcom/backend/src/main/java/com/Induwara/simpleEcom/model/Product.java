@@ -2,9 +2,14 @@ package com.Induwara.simpleEcom.model;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 @Component
+@Entity
 public class Product {
 
+    @Id
     private int prodID;
     private String prodName;
     private int price;

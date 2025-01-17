@@ -1,0 +1,7 @@
+services:
+  simple-ecom:
+    build: .
+    volumes:
+      - C:/Users/induw/.m2:/root/.m2  # Cache Maven dependencies (Windows path format)
+    ports:
+      - "8080:8080"

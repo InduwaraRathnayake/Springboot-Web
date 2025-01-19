@@ -3,12 +3,11 @@ package com.Induwara.simpleEcom.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,10 +27,12 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String category;
-    private boolean avaible;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private boolean productAvailable;
     private Date releaseDate;
+    private int stockQuantity;
 
-    private int quantity;
+    private String imageName;
+    private String imageType;
+    @Lob // Large Object
+    private byte[] imageData;    
 }

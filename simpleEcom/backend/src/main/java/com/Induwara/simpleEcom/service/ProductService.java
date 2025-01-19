@@ -30,6 +30,17 @@ public class ProductService {
         product.setImageData(imageFile.getBytes());
         return repository.save(product);
     }
+    
+    public Product updateProduct(int id, Product product, MultipartFile imageFile) throws IOException {
+        product.setImageData(imageFile.getBytes());
+        product.setImageName(imageFile.getOriginalFilename());
+        product.setImageType(imageFile.getContentType());
+        return repository.save(product);
+    }
     //these getOriginalFilename, getContentType, getBytes methods are from MultiPartFile class from Spring
+
+    public void deleteProduct(int id) {
+        repository.deleteById(id);
+    }
     
 }

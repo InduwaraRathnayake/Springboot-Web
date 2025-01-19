@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.Induwara.simpleEcom.model.Product;
 
-@Repository //within <> , mention the entity class and the type of the primary key
+@Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     
 }
